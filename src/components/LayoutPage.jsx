@@ -6,8 +6,9 @@ import {
     ReconciliationOutlined,
     ShoppingOutlined,
     AppstoreOutlined,
+    LogoutOutlined,
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, ConfigProvider, Image } from 'antd';
+import { Layout, Menu, ConfigProvider, Image } from 'antd';
 import React, { useState } from 'react';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -35,7 +36,7 @@ const items = [
     getItem('Vendedores', '5', <TeamOutlined />),
     getItem('Entidades', '6', <ShopOutlined />),
     getItem('Mi Perfil', '7', <UserOutlined />),
-    getItem('Cerrar Sesión', '8'),
+    getItem('Cerrar Sesión', '8', <LogoutOutlined />),
     
     
 ];
@@ -65,14 +66,6 @@ const LayoutPage = () => {
                         margin: '0 16px',
                     }}
                 >
-                    <Breadcrumb
-                        style={{
-                            margin: '16px 0',
-                        }}
-                    >
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
                     <div
                         className="site-layout-background"
                         style={{
