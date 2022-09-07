@@ -1,6 +1,10 @@
-@import '~antd/dist/antd.css';
+@import 'antd/dist/antd.variable.min.css';
 
 .App {
   text-align: center;
 }
 
+.logo {
+  width: 180px;
+    margin: 14px;
+}
