@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, ConfigProvider, Image } from 'antd';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -19,30 +20,34 @@ ConfigProvider.config({
     },
 });
 
-function getItem(label, key, icon, children) {
+function getItem(label, key, icon, onClick) {
     return {
         key,
         icon,
-        children,
+        onClick,
         label,
     };
 }
 
-const items = [
-    getItem('Dashboard', '1', <PieChartOutlined />),
-    getItem('Paquetes', '2', <AppstoreOutlined />),
-    getItem('Cotizaciones', '3', < ReconciliationOutlined />),
-    getItem('Catálogo', '4', < ShoppingOutlined />),
-    getItem('Vendedores', '5', <TeamOutlined />),
-    getItem('Entidades', '6', <ShopOutlined />),
-    getItem('Mi Perfil', '7', <UserOutlined />),
-    getItem('Cerrar Sesión', '8', <LogoutOutlined />),
-    
-    
-];
 
-const LayoutPage = () => {
+
+const LayoutPage = (props) => {
     const [collapsed, setCollapsed] = useState(false);
+    const navigate = useNavigate()
+
+    const items = [
+        getItem('Dashboard', '1', <PieChartOutlined />, () =>{console.log ("funcion") }),
+        getItem('Paquetes', '2', <AppstoreOutlined />),
+        getItem('Cotizaciones', '3', < ReconciliationOutlined />),
+        getItem('Catálogo', '4', < ShoppingOutlined />),
+        getItem('Vendedores', '5', <TeamOutlined />),
+        getItem('Entidades', '6', <ShopOutlined />),
+        getItem('Mi Perfil', '7', <UserOutlined />),
+        getItem('Cerrar Sesión', '8', <LogoutOutlined />),
+
+
+    ];
+
     return (
         <Layout
             style={{
@@ -73,7 +78,7 @@ const LayoutPage = () => {
                             minHeight: 360,
                         }}
                     >
-                        Bill is a cat.
+                      {props.children}
                     </div>
                 </Content>
                 <Footer
