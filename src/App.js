@@ -84,7 +84,7 @@ return (
 </ProfilePage> */}
 
 <TableQuotes>
-  
+
 </TableQuotes>
   </div>
 );

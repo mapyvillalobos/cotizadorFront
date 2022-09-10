@@ -5,14 +5,14 @@ import { getAllQuotesWs } from '../services/quote-ws'
 const columns = [
     {
         title: 'Nombre',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'clientName',
+        key: 'clientName',
         render: (text) => <a>{text}</a>,
     },
     {
         title: 'Fecha',
         dataIndex: 'date',
-        key: 'ddate',
+        key: 'date',
     },
     {
         title: 'Total',
@@ -44,28 +44,26 @@ const columns = [
         ),
     },
 ];
-const data = () => {
+
+
+
+
+const TableQuotes = () => {
     const [infoQuotes, setInfoQuotes] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         getAllQuotesWs()
-        .then(res => {
-            setInfoQuotes(res.data.quotes)
-        })
-        .catch(error => { console.log("el error", error) })
-    },[])
-    console.log(infoQuotes)
- 
-        infoQuotes.map(infoQuote => {
+            .then(res => {
+               
+                setInfoQuotes(res.data.quotes)
+            })
+            .catch(error => { console.log("el error", error) })
+    }, [])
+    const data = () => {
 
-                key={}
-                name={infoQuote}
-                dataIndex={}
-        })
-};
-
-
-
-const TableQuotes = () => 
-    <Table columns={columns} dataSource={data} />;
+    };
+    /**
+     * infoQuotes =[{_id:"1234567",}]
+     */
+    return (<Table columns={columns} dataSource={infoQuotes} /> ) };
 
 export default TableQuotes;

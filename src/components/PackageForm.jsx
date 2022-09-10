@@ -7,16 +7,18 @@ import {
     Input,
     Button,
     Upload,
-    Cascader,
     Checkbox, 
     Col, 
-    Row,
+    Row
 } from 'antd';
 const { TextArea } = Input;
 
 
+
 const PackageForm = () => {
     const [productList, setProductList] = useState([])
+    const [imageURL, setImageURL] = useState('')
+    const [selectedProduct, setSelectedProduct] = useState([])
     useEffect(() => {
         getAllCataloguesWs()
         .then(res => {
@@ -27,9 +29,27 @@ const PackageForm = () => {
     }, [])
     console.log(productList)
 
+    const configUpload = {
+        name: 'image',
+        action: 'http://localhost:5005/api/upload/single',
+        onChange(info) {
+            if (info.file.status !== 'uploading') {
+                console.log(info.file, info.fileList);
+            }
+
+            if (info.file.status === 'done') {
+                console.log("que es info", info)
+                setImageURL(info.file.response.url.uri)
+                // message.success(`${info.file.name} file uploaded successfully`);
+            } else if (info.file.status === 'error') {
+                // message.error(`${info.file.name} file upload failed.`);
+            }
+        },
+    }
+
     const onFinish = (values) => {
         console.log(values)
-        createPackageWs(values)
+        createPackageWs({ ...values, ImageURL: imageURL, _products:selectedProduct })
             .then(response => (console.log(response)))
     }
     const onFinishFailed = (values) => {
@@ -38,6 +58,7 @@ const PackageForm = () => {
 
     const onChange = (checkedValues) => {
         console.log('checked = ', checkedValues);
+        setSelectedProduct(checkedValues)
     };
 
     return (
@@ -72,7 +93,7 @@ const PackageForm = () => {
                 </Form.Item>
 
                 <Form.Item valuePropName="fileList">
-                    <Upload action="/upload.do" listType="picture-card">
+                    <Upload {...configUpload} listType="picture-card">
                         <div>
                             <PlusOutlined />
                             <div
@@ -87,17 +108,17 @@ const PackageForm = () => {
                 </Form.Item>
                 <div>
                     <Form.Item>
-
                         <Checkbox.Group
                             style={{
                                 width: '100%',
                             }}
-                            onChange={onChange}
+                            
                         >
                             <Row>
                                 <Col span={8}>
                                     <Checkbox.Group 
-                                        options={
+                                        onChange={onChange}
+                                        options={ 
                                             productList.map(item => ({ value: item._id, label: item.productName }))
                                         }
                                     />
