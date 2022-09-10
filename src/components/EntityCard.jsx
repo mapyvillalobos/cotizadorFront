@@ -1,4 +1,4 @@
-import { getAllEntitiesWs } from "../services/entity-ws"
+
 
 const EntityCard = (props) => {
     return (

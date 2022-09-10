@@ -5,8 +5,9 @@ import routes from "./config/routes";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import { logoutWs } from "./services/auth-ws";
-import { LayoutPage } from "./components";
-import {EntityCards, LogInPage} from "./pages"
+import { LayoutPage, PackageForm } from "./components";
+import {EntityCards, LogInPage, packageCatalog, packageCreate} from "./pages"
+import PackageCatalog from "./pages/packageCatalog";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -53,9 +54,21 @@ return (
 
 </EntityCards> */}
 
-<LogInPage>
+{/* <LogInPage>
+
+</LogInPage> */}
+
+{/* <PackageCatalog>
+
+</PackageCatalog> */}
+
+{/* <packageCreate>
+
+</packageCreate> */}
+
+<PackageForm>
   
-</LogInPage>
+</PackageForm>
   </div>
 );
 }
