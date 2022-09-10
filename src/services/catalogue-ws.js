@@ -1,5 +1,5 @@
 import { api } from "./api";
-import { successStatus, internalServerError } from "../utils/format-response";
+import { successStatus, internalServerError } from "../utils/format-responses";
 
 export const createCatalogueWs = (data) =>
   api

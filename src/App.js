@@ -5,9 +5,11 @@ import routes from "./config/routes";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import { logoutWs } from "./services/auth-ws";
-import { LayoutPage, PackageForm } from "./components";
-import {EntityCards, LogInPage, packageCatalog, packageCreate} from "./pages"
+import { LayoutPage, PackageForm, TableQuotes } from "./components";
+import {EntityCards, LogInPage, packageCatalog, packageCreate, ProfilePage} from "./pages"
 import PackageCatalog from "./pages/packageCatalog";
+import CatalogueProducts from "./pages/catalogueProducts";
+import AllUsers from "./pages/users";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -66,9 +68,24 @@ return (
 
 </packageCreate> */}
 
-<PackageForm>
+{/* <PackageForm>
+
+</PackageForm> */}
+
+{/* <CatalogueProducts>
+
+</CatalogueProducts> */}
+{/* <AllUsers>
+
+</AllUsers> */}
+
+{/* <ProfilePage>
+
+</ProfilePage> */}
+
+<TableQuotes>
   
-</PackageForm>
+</TableQuotes>
   </div>
 );
 }

@@ -1,5 +1,5 @@
 import { api } from "./api";
-import { successStatus, internalServerError } from "../utils/format-response";
+import { successStatus, internalServerError } from "../utils/format-responses";
 
 export const editUserWs = (data) =>
   api
@@ -20,4 +20,4 @@ export const idProfileWs = () =>
     .catch(internalServerError);
 
 export const usersWs = (data) =>
-  api.get("/admin/users", data).then(successStatus).catch(internalServerError);
+  api.get("/user/admin/users", data).then(successStatus).catch(internalServerError);

@@ -1,5 +1,5 @@
 import { api } from "./api";
-import { successStatus, internalServerError } from "../utils/format-response";
+import { successStatus, internalServerError } from "../utils/format-responses";
 
 export const createQuoteWs = (data) =>
   api
@@ -21,6 +21,9 @@ export const updateStatusQuoteWs = (data) =>
 
 export const getAllQuotesWs = () =>
   api.get("/quote/all").then(successStatus).catch(internalServerError);
+
+export const getQuoteByIdWs = () =>
+    api.get("/quote/:id/detail").then(successStatus).catch(internalServerError);
 
 export const deleteQuoteWs = () =>
   api
