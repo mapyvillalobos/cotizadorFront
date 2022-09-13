@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
-import { UserCard } from '../components';
+import { UserCard, UserForm } from '../components';
 import { usersWs } from "../services/user-ws"
+import {
+    Button,
+} from 'antd';
 
 
 
-const AllUsers = () => {
+const AllUsers = (props) => {
     const [userCards, setUserCards] = useState([]);
+    const [isCreate, setIsCreate] = useState(false)
     useEffect(() => {
         usersWs()
             .then(res => {
@@ -23,10 +27,20 @@ const AllUsers = () => {
                     <UserCard
                         img={userCard.imageURL}
                         firstName={userCard.firstName}
-                        //entity={userCard._entity}
+                        entity={userCard._entities}
                     />
                 );
             })}
+
+            {props.user.role === "Admin" && <Button type="primary" onClick={() => setIsCreate(!isCreate)} >
+                Crear vendedor
+            </Button> }
+            
+
+            {isCreate && <UserForm /> }
+             
+            
+      
         </div>
     )
 };

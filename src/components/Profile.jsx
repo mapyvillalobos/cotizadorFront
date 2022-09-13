@@ -9,8 +9,12 @@ const Profile = (props) => {
             <h2>{props.lastName}</h2>
             <h2>{props.email}</h2>
             <h2>{props.role}</h2>
-            <Button type="primary" htmlType="submit">
+            {/* <Button type="primary" htmlType="submit">
                 Reset Contraseña
+            </Button> */}
+
+            <Button type="primary" htmlType="submit">
+                Editar
             </Button>
         </div>
     )

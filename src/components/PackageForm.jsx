@@ -40,9 +40,7 @@ const PackageForm = () => {
             if (info.file.status === 'done') {
                 console.log("que es info", info)
                 setImageURL(info.file.response.url.uri)
-                // message.success(`${info.file.name} file uploaded successfully`);
             } else if (info.file.status === 'error') {
-                // message.error(`${info.file.name} file upload failed.`);
             }
         },
     }

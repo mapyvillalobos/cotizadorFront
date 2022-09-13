@@ -43,7 +43,7 @@ const LayoutPage = (props) => {
         getItem('Vendedores', '5', <TeamOutlined />, () => { navigate("/main/vendedores") }),
         getItem('Entidades', '6', <ShopOutlined />, () => { navigate("/main/entidades") }),
         getItem('Mi Perfil', '7', <UserOutlined />, () => { navigate("/main/mi-perfil") }),
-        getItem('Cerrar Sesión', '8', <LogoutOutlined />, () => { navigate("/main/logout") })
+        getItem('Cerrar Sesión', '8', <LogoutOutlined />, () => { props.handleLogout() })
 
 
     ];

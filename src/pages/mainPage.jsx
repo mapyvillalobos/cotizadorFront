@@ -3,11 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 import mainroutes from '../config/mainroutes';
 
 
-const mainPage = () => {
+const mainPage = (props) => {
     return (
-       <LayoutPage>
+       <LayoutPage {...props}>
             <Routes>
-                {mainroutes().map(
+                {mainroutes(props).map(
                     ({ path, element }, index_route) => (
                         <Route key={path} {...{ path, element }} />
                     )

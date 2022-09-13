@@ -11,7 +11,7 @@ const routes = (props) => {
         },
         {
             path: "/main/*",
-            element: <MainPage/>
+            element: <MainPage {...props}/>
         },
         // {
         //     path: "/login", 

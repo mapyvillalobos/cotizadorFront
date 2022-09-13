@@ -5,12 +5,7 @@ import routes from "./config/routes";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import { logoutWs } from "./services/auth-ws";
-import { LayoutPage, PackageForm, TableQuotes, QuoteForm } from "./components";
-import {EntityCards, LogInPage, packageCatalog, packageCreate, ProfilePage, QuoteCreate, Quotes} from "./pages"
-import PackageCatalog from "./pages/packageCatalog";
-import CatalogueProducts from "./pages/catalogueProducts";
-import AllUsers from "./pages/users";
-import EntityCreate from "./pages/entityCreate";
+import UserForm from "./components/UserForm";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -26,7 +21,6 @@ function App() {
           title: "Cerrar sesión",
           content: "Estás seguro que deseas cerar sesión?",
           onOk() {
-            //ejecutar el endpoint para hacer logout y borrar el usuario del state
             logoutWs().then((res) => {
               const { data, status, errorMessage } = res;
               if (status) {
@@ -52,51 +46,6 @@ return (
         )
       )}
     </Routes>
-
-{/* <EntityCards>
-
-</EntityCards> */}
-
-{/* <LogInPage>
-
-</LogInPage> */}
-
-{/* <PackageCatalog>
-
-</PackageCatalog> */}
-
-{/* <packageCreate>
-
-</packageCreate> */}
-
-{/* <PackageForm>
-
-</PackageForm> */}
-
-{/* <CatalogueProducts>
-
-</CatalogueProducts> */}
-{/* <AllUsers>
-
-</AllUsers> */}
-
-{/* <ProfilePage>
-
-</ProfilePage> */}
-
-{/* <Quotes>
-
-</Quotes> */}
-{/* 
-<QuoteCreate>
-
-</QuoteCreate> */}
-
-{/* <EntityCreate>
-
-</EntityCreate> */}
-
-
   </div>
 );
 }

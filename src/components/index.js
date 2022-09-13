@@ -8,3 +8,4 @@ export { default as Profile } from "./Profile";
 export { default as TableQuotes } from "./TableQuotes";
 export { default as QuoteForm } from "./QuoteForm";
 export { default as EntityForm } from "./EntityForm";
+export { default as UserForm } from "./UserForm";

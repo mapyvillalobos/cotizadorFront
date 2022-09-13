@@ -1,4 +1,4 @@
-import { PackageCatalog, Quotes, CatalogueProducts, EntityCards, ProfilePage } from '../pages'; 
+import { PackageCatalog, Quotes, CatalogueProducts, EntityCards, ProfilePage, AllUsers } from '../pages'; 
 
 const mainroutes = (props) => {
 
@@ -9,32 +9,29 @@ const mainroutes = (props) => {
         },
         {
             path: "/paquetes",
-            element: <PackageCatalog/>
+            element: <PackageCatalog {...props}/>
         },
         {
             path: "/cotizaciones",
-            element: <Quotes/>
+            element: <Quotes {...props} />
         },
         {
             path: "/catalogo",
-            element: <CatalogueProducts/>
+            element: <CatalogueProducts {...props} />
         },
         {
             path: "/vendedores",
-            element: <h1>Vendedores</h1>
+            element: <AllUsers {...props} />
         },
         {
             path: "/entidades",
-            element: <EntityCards/>
+            element: <EntityCards {...props} />
         },
         {
             path: "/mi-perfil",
-            element: <ProfilePage/>
-        },
-        {
-            path: "/logout",
-            element: <h1>Logout</h1>
+            element: <ProfilePage {...props} />
         }
+       
     ]
 
 }

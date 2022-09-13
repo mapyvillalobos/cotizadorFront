@@ -1,25 +1,38 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Layout, Image, Space } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, Checkbox, Form, Input, Layout, Image, Space, Modal, Row } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 import { loginWs } from '../services/auth-ws'
 
 const { Header, Footer, Sider, Content } = Layout;
 
 
-const LogInPage = () => {
+
+
+
+const LogInPage = (props) => {
+    const navigate = useNavigate();
     const onFinish = (values) => {
         loginWs(values)
-            .then(response => (console.log(response)))
+            .then(response => {
+                console.log(response)
+                if (response.status) {
+                    props.authentication(response.data.user)
+                    navigate("/main/dashboard")
+                    Modal.success({
+                        content: "¡Bienvenido!",
+                    })
+                }
+            })
     };
     const onFinishFailed = (values) => {
         console.log('Failed', values);
     };
 
     return (
-        <div className="space-align-container">
-            <div className="space-align-block">
-                <Space align="center">
+            <div>
+               
                     <Layout
                         style={{
                             minHeight: '100vh',
@@ -27,13 +40,18 @@ const LogInPage = () => {
                         <Header>
                             <Image className="logo" src="https://res.cloudinary.com/dvgmi864m/image/upload/v1662520902/EventQuote/EventQuote_blanco_bzlfob.png" />
                         </Header>
-                        <Layout>
-                            <Content>
-
-
-                                <Form
-                                    name="normal_login"
-                                    className="login-form"
+                            <Content
+                    justify="center" align="middle">
+                    <div>
+                        
+                    <Form
+                            name="basic"
+                            labelCol={{
+                                span: 8,
+                            }}
+                            wrapperCol={{
+                                span: 8,
+                            }}
                                     initialValues={{
                                         remember: true,
                                     }}
@@ -49,7 +67,7 @@ const LogInPage = () => {
                                             },
                                         ]}
                                     >
-                                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+                                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="*Email" />
                                     </Form.Item>
                                     <Form.Item
                                         name="password"
@@ -63,7 +81,7 @@ const LogInPage = () => {
                                         <Input
                                             prefix={<LockOutlined className="site-form-item-icon" />}
                                             type="password"
-                                            placeholder="Contraseña"
+                                            placeholder="*Contraseña"
                                         />
                                     </Form.Item>
                                     {/* <Form.Item>
@@ -78,12 +96,10 @@ const LogInPage = () => {
                                         </Button>
                                     </Form.Item>
                                 </Form>
+                                  
+                    </div>
                             </Content>
                         </Layout>
-                        <Footer></Footer>
-                    </Layout>
-                </Space>
-            </div>
         </div>
     );
 };
