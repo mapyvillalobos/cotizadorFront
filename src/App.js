@@ -5,11 +5,12 @@ import routes from "./config/routes";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import { logoutWs } from "./services/auth-ws";
-import { LayoutPage, PackageForm, TableQuotes } from "./components";
-import {EntityCards, LogInPage, packageCatalog, packageCreate, ProfilePage} from "./pages"
+import { LayoutPage, PackageForm, TableQuotes, QuoteForm } from "./components";
+import {EntityCards, LogInPage, packageCatalog, packageCreate, ProfilePage, QuoteCreate, Quotes} from "./pages"
 import PackageCatalog from "./pages/packageCatalog";
 import CatalogueProducts from "./pages/catalogueProducts";
 import AllUsers from "./pages/users";
+import EntityCreate from "./pages/entityCreate";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -44,13 +45,13 @@ function App() {
     
 return (
   <div className="App">
-    {/* <Routes>
+    <Routes>
       {routes({ user, handleLogout, authentication }).map(
         ({ path, element }, index_route) => (
           <Route key={path} {...{ path, element }} />
         )
       )}
-    </Routes> */}
+    </Routes>
 
 {/* <EntityCards>
 
@@ -83,9 +84,19 @@ return (
 
 </ProfilePage> */}
 
-<TableQuotes>
+{/* <Quotes>
 
-</TableQuotes>
+</Quotes> */}
+{/* 
+<QuoteCreate>
+
+</QuoteCreate> */}
+
+{/* <EntityCreate>
+
+</EntityCreate> */}
+
+
   </div>
 );
 }

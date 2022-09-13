@@ -16,11 +16,13 @@ const PackageCatalog = () => {
     console.log(packageCards)
     return (
         <div>
+            <h1>Catálogo</h1>
             {packageCards.map(packageCard => {
                 return (
+            
                     <PackageCard 
                     img={packageCard.ImageURL}
-                    name={packageCard.packageName}  
+                    name={packageCard.packageName}      
                     shortDescription={packageCard.packageShortDescription}
                     cost={packageCard.packageCost}
                     amountPeolple={packageCard.packageAmountPeople}

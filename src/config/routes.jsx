@@ -1,4 +1,4 @@
-import { LogInPage } from '../pages'
+import { LogInPage, MainPage } from '../pages';
 
 
 
@@ -10,8 +10,8 @@ const routes = (props) => {
             element: <LogInPage {...props} />
         },
         {
-            path: "/main",
-            element: <h1>Main</h1>
+            path: "/main/*",
+            element: <MainPage/>
         },
         // {
         //     path: "/login", 

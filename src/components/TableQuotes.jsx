@@ -7,7 +7,6 @@ const columns = [
         title: 'Nombre',
         dataIndex: 'clientName',
         key: 'clientName',
-        render: (text) => <a>{text}</a>,
     },
     {
         title: 'Fecha',
@@ -16,18 +15,18 @@ const columns = [
     },
     {
         title: 'Total',
-        dataIndex: 'total',
-        key: 'total',
+        dataIndex: 'totalOrder',
+        key: 'totalOrder',
     },
     {
         title: 'Vendedor',
-        dataIndex: 'firstName',
-        key: 'firstName',
+        dataIndex: '_Owner',
+        key: '_Owner.firstName',
     },
     {
         title: 'Entidad',
-        dataIndex: 'Entity',
-        key: 'entitys',
+        dataIndex: '_Entity',
+        key: '_Entity',
     },
     {
         title: 'Status',
@@ -39,7 +38,7 @@ const columns = [
         key: 'action',
         render: (_, record) => (
             <Space size="middle">
-                <a>Delete</a>
+                <a>Reenviar</a>
             </Space>
         ),
     },

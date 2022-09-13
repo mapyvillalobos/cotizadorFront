@@ -6,3 +6,5 @@ export { default as CatalogueCard } from "./CatalogueCard";
 export { default as UserCard } from "./UserCard";
 export { default as Profile } from "./Profile";
 export { default as TableQuotes } from "./TableQuotes";
+export { default as QuoteForm } from "./QuoteForm";
+export { default as EntityForm } from "./EntityForm";

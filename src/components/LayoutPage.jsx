@@ -36,14 +36,14 @@ const LayoutPage = (props) => {
     const navigate = useNavigate()
 
     const items = [
-        getItem('Dashboard', '1', <PieChartOutlined />, () =>{console.log ("funcion") }),
-        getItem('Paquetes', '2', <AppstoreOutlined />),
-        getItem('Cotizaciones', '3', < ReconciliationOutlined />),
-        getItem('Catálogo', '4', < ShoppingOutlined />),
-        getItem('Vendedores', '5', <TeamOutlined />),
-        getItem('Entidades', '6', <ShopOutlined />),
-        getItem('Mi Perfil', '7', <UserOutlined />),
-        getItem('Cerrar Sesión', '8', <LogoutOutlined />),
+        getItem('Dashboard', '1', <PieChartOutlined />, () => { navigate("/main/dashboard") }),
+        getItem('Paquetes', '2', <AppstoreOutlined />, () => { navigate("/main/paquetes") }),
+        getItem('Cotizaciones', '3', < ReconciliationOutlined />, () => { navigate("/main/cotizaciones") }),
+        getItem('Catálogo', '4', < ShoppingOutlined />, () => { navigate("/main/catalogo") }),
+        getItem('Vendedores', '5', <TeamOutlined />, () => { navigate("/main/vendedores") }),
+        getItem('Entidades', '6', <ShopOutlined />, () => { navigate("/main/entidades") }),
+        getItem('Mi Perfil', '7', <UserOutlined />, () => { navigate("/main/mi-perfil") }),
+        getItem('Cerrar Sesión', '8', <LogoutOutlined />, () => { navigate("/main/logout") })
 
 
     ];
