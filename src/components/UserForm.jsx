@@ -61,7 +61,6 @@ const UserForm = () => {
 
     return (
         <div>
-            <h1> Crear nuevo vendedor</h1>
 
             <Form
                 labelCol={{
@@ -128,7 +127,7 @@ const UserForm = () => {
                 <div>
                     <div>
                         <Button type="primary" htmlType="submit">
-                            Crear vendedor
+                            Guardar
                         </Button>
                     </div>
                 </div>

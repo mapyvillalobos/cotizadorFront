@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Row, Col } from 'antd';
 import { CatalogueCard } from '../components';
 import { getAllCataloguesWs } from "../services/catalogue-ws"
 
@@ -15,16 +16,20 @@ const CatalogueProducts = () => {
     }, [])
     console.log(catalogueCards)
     return (
-        <div>
+        <div className="site-card-wrapper">
             <h1> Catálogo de productos y servicios de </h1>
             {catalogueCards.map(catalogueCard => {
                 return (
+                    <Row gutter={16}>
+                        <Col span={8}>
                     <CatalogueCard
                         img={catalogueCard.catalogueImageURL}
                         name={catalogueCard.productName}
                         shortDescription={catalogueCard.productShortDescription}
                         cost={catalogueCard.productCost}
                     />
+                        </Col>
+                    </Row>
                 );
             })}
         </div>

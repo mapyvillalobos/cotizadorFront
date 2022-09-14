@@ -1,10 +1,14 @@
-import { Button } from "antd";
+import { Button, Image } from "antd";
 
 
 const Profile = (props) => {
+   
     return (
         <div>
-            <img src={props.img} />
+            <Image
+                width={200}
+                src={props.img} 
+            />
             <h1>{props.name}</h1>
             <h2>{props.lastName}</h2>
             <h2>{props.email}</h2>
@@ -13,9 +17,7 @@ const Profile = (props) => {
                 Reset Contraseña
             </Button> */}
 
-            <Button type="primary" htmlType="submit">
-                Editar
-            </Button>
+         
         </div>
     )
 }

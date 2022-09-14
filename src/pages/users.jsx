@@ -3,6 +3,8 @@ import { UserCard, UserForm } from '../components';
 import { usersWs } from "../services/user-ws"
 import {
     Button,
+    Row, 
+    Col
 } from 'antd';
 
 
@@ -20,15 +22,19 @@ const AllUsers = (props) => {
     }, [])
     console.log(userCards)
     return (
-        <div>
+        <div className="site-card-wrapper">
             <h1> Vendedores </h1>
             {userCards.map(userCard => {
                 return (
+                    <Row gutter={16}>
+                        <Col span={8}>
                     <UserCard
                         img={userCard.imageURL}
                         firstName={userCard.firstName}
                         entity={userCard._entities}
                     />
+                        </Col>
+                    </Row>
                 );
             })}
 

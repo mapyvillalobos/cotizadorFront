@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Profile } from '../components';
+import { Button } from "antd";
+import { Profile, MyProfileEditForm } from '../components';
 import { myProfileWs } from "../services/user-ws"
 
 
 
 const ProfilePage = () => {
     const [profileUser, setProfileUser] = useState([]);
+    const [isEdited, setIsEdited] = useState(false)
     useEffect(() => {
         myProfileWs()
             .then(res => {
@@ -24,6 +26,12 @@ const ProfilePage = () => {
                         email={email} 
                         role={role}
                     />
+            <Button type="primary" onClick={() => setIsEdited(!isEdited)}>
+                Editar
+            </Button>
+
+            {isEdited && <MyProfileEditForm />}
+                    
         </div>
     )
 };

@@ -21,7 +21,12 @@ const columns = [
     {
         title: 'Vendedor',
         dataIndex: '_Owner',
-        key: '_Owner.firstName',
+        key: '_Owner',
+        render: (_, record) => (
+            <Space size="middle">
+                <a>{record._Owner?.email}</a>
+            </Space>
+        ),
     },
     {
         title: 'Entidad',
@@ -52,7 +57,8 @@ const TableQuotes = () => {
     useEffect(() => {
         getAllQuotesWs()
             .then(res => {
-               
+                console.log(res)
+
                 setInfoQuotes(res.data.quotes)
             })
             .catch(error => { console.log("el error", error) })
@@ -63,6 +69,7 @@ const TableQuotes = () => {
     /**
      * infoQuotes =[{_id:"1234567",}]
      */
-    return (<Table columns={columns} dataSource={infoQuotes} /> ) };
+    return (<Table columns={columns} dataSource={infoQuotes} />)
+};
 
 export default TableQuotes;

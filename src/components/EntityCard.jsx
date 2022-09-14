@@ -1,10 +1,22 @@
+import { Card, Button } from "antd";
 
+const { Meta } = Card;
 
 const EntityCard = (props) => {
     return (
         <div>
-            <img src = {props.img}/>
-            <h1>{props.name}</h1>
+            <Card
+                hoverable
+                style={{
+                    width: 240,
+                }}
+                cover={<img src={props.img} />}
+            >
+                <Meta title={props.name} />
+            </Card>
+            <Button type="primary" htmlType="submit">
+                Editar
+            </Button>
         </div>
     )
 }
