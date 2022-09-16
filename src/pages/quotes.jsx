@@ -1,6 +1,7 @@
 import { TableQuotes } from '../components';
 import {
-    Button
+    Divider,
+    Typography
 } from 'antd';
 
 
@@ -9,15 +10,14 @@ const Quotes = () => {
     return (
         <div>
             <div>
-            <h1> Cotizaciones</h1>
-            <Button type="primary" htmlType="">
-                Crear cotización
-            </Button>
+                <Typography.Title level={1}> Cotizaciones</Typography.Title>
+                <Divider orientation="center"></Divider>
             </div>
 
            <div>
+                <br />
         <TableQuotes>
-                
+       
 
         </TableQuotes>
         </div>

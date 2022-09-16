@@ -1,8 +1,6 @@
-import { Card, Button, Row, Col} from 'antd';
+import { Card } from 'antd';
 
 const { Meta } = Card;
-
-
 
 const PackageCard = (props) => {
     console.log(props)
@@ -18,23 +16,17 @@ const PackageCard = (props) => {
             >
                         <Meta title={props.name} description={props.shortDescription}/>
             
-                
-            <h2>${props.cost} p/p</h2>
-            <h2>{props.amountPeolple} personas</h2>
+               <br/> 
+            <span>${props.cost} por persona</span> <br/>
+                <span>{props.amountPeolple} personas</span><br /><br />
+            <div>
             {props.products.map(product => (
-                <span>{product.productName}</span>
+                <span>{product.productName}  <br/></span>
             )) }
-               
+                </div>
             </Card>
-            <br></br>
-          
 
-
-          
         </div>
-           
-            
-            
     )
 }
 

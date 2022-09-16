@@ -33,7 +33,6 @@ const UserForm = ({beingCreated, setBeingCreated}) => {
     }
 
     const onFinish = (values) => {
-        console.log(values)
         signupWs({ ...values, ImageURL: imageURL })
             .then(response => {
                 if (response.data) {

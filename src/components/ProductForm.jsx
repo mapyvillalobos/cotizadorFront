@@ -33,7 +33,6 @@ const ProductForm = ({ beingCreated, setBeingCreated }) => {
     }
 
     const onFinish = (values) => {
-        console.log(values)
         createCatalogueWs({ ...values, ImageURL: imageURL })
             .then(response => {
                 if (response.data) {

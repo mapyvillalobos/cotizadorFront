@@ -13,17 +13,7 @@ import { uploadURL } from '../services/api';
 
 
 const EntityForm = ({ beingCreated, setBeingCreated }) => {
-    //const [entityInfo, setEntityInfo] = useState([])
     const [imageURL, setImageURL] = useState('')
-    // useEffect(() => {
-    //     createEntityWs()
-    //         .then(res => {
-    //             console.log(res.data)
-    //             setEntityInfo(res.data.entity)
-    //         })
-    //         .catch(error => { console.log("el error", error) })
-    // }, [])
-    // console.log(entityInfo)
 
     const configUpload = {
         name: 'image',
@@ -43,7 +33,6 @@ const EntityForm = ({ beingCreated, setBeingCreated }) => {
     }
 
     const onFinish = (values) => {
-        console.log(values)
         createEntityWs({ ...values, ImageURL: imageURL })
             .then(response => {
                 if (response.data) {

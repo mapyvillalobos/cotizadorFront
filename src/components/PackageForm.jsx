@@ -7,9 +7,9 @@ import {
     Input,
     Button,
     Upload,
-    Checkbox, 
-    Col, 
-    Row
+    Checkbox,  
+    Row, 
+    Space
 } from 'antd';
 import { uploadURL } from '../services/api';
 const { TextArea } = Input;
@@ -20,6 +20,7 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
     const [productList, setProductList] = useState([])
     const [imageURL, setImageURL] = useState('')
     const [selectedProduct, setSelectedProduct] = useState([])
+    
     useEffect(() => {
         getAllCataloguesWs()
         .then(res => {
@@ -28,7 +29,7 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
         })
         .catch(error => {console.log("el error", error)})
     }, [])
-    console.log(productList)
+
 
     const configUpload = {
         name: 'image',
@@ -47,7 +48,6 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
     }
 
     const onFinish = (values) => {
-        console.log(values)
         createPackageWs({ ...values, ImageURL: imageURL, _products:selectedProduct })
             .then(response => {
                 if (response.data) {
@@ -66,15 +66,18 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
 
     return (
         <div>
-            <h1> Crear Paquete</h1>
+            <div className='forms'>
+                <Space
+                    direction="vertical"
+                    align="mock-block"
+                    style={{
+                        display: 'flex'
+                    }}
+                >
+                    <br /> <br />
 
             <Form
-                labelCol={{
-                    span: 4,
-                }}
-                wrapperCol={{
-                    span: 14,
-                }}
+        
                 layout="horizontal"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -118,25 +121,27 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
                             
                         >
                             <Row>
-                                <Col span={8}>
+        
                                     <Checkbox.Group 
                                         onChange={onChange}
                                         options={ 
-                                            productList.map(item => ({ value: item._id, label: item.productName }))
-                                        }
-                                    />
-                                </Col>
+                                            productList.map(item => (
+                                                {value: item._id, label: item.productName }
+                                                
+                                                ))
+                                        } 
+                                            />
                             </Row>
                         </Checkbox.Group>  
                     </Form.Item>
                         <div>
                     <Button type="primary" htmlType="submit">
-                        Crear paquete
+                        Crear
                     </Button>
                     </div>
                 </div>
             </Form>
-                <div>
+                </Space>
                    
                 </div>
                

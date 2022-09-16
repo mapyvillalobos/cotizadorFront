@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { Space, Table } from 'antd';
+import { Space, Table, List } from 'antd';
 import { getAllQuotesWs } from '../services/quote-ws'
+
+
 
 const columns = [
     {
@@ -10,13 +12,8 @@ const columns = [
     },
     {
         title: 'Fecha',
-        dataIndex: 'date',
-        key: 'date',
-    },
-    {
-        title: 'Total',
-        dataIndex: 'totalOrder',
-        key: 'totalOrder',
+        dataIndex: 'eventDate',
+        key: 'eventDate',
     },
     {
         title: 'Vendedor',
@@ -29,27 +26,23 @@ const columns = [
         ),
     },
     {
-        title: 'Entidad',
+        title: 'Cantidad de personas',
+        dataIndex: 'quoteAmountPeople',
+        key: 'quoteAmountPeople',
+    },
+    {
+        title: 'Productos',
         dataIndex: '_products',
         key: '_products',
         render: (_, record) => (
-            <Space size="middle">
-                <a>{record._products?.map(product => <span>{product.productName}</span>)}</a>
-            </Space>)
+            <List size="middle">
+                <span>{record._products?.map(product => <span>- {product.productName} <br/> </span>)}</span>
+            </List>)
     },
     {
         title: 'Status',
         dataIndex: 'status',
         key: 'status',
-    },
-    {
-        title: 'Action',
-        key: 'action',
-        render: (_, record) => (
-            <Space size="middle">
-                <a>Reenviar</a>
-            </Space>
-        ),
     },
 ];
 
@@ -69,10 +62,9 @@ const TableQuotes = () => {
     }, [])
     const data = () => {
 
+        for (let i = 0; i < 3; ++i) {
+        }
     };
-    /**
-     * infoQuotes =[{_id:"1234567",}]
-     */
     return (<Table columns={columns} dataSource={infoQuotes} />)
 };
 
