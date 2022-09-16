@@ -1,11 +1,10 @@
-import { Card, Button } from "antd";
-
+import { Card } from "antd";
 
 const { Meta } = Card;
 
 const UserCard = (props) => {
     return (
-        <div>
+        <div className="cards">
             <Card
                 hoverable
                 style={{
@@ -13,9 +12,8 @@ const UserCard = (props) => {
                 }}
                 cover={<img src={props.img} />}
             >
-                <Meta title={props.firstName} description={props.entity} />
+                <Meta title={props.firstName} />
         
-                <h2>{props.cost}</h2>
             </Card>
         </div>
     )

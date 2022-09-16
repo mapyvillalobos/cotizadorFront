@@ -6,7 +6,6 @@ import {
     Input,
     Button,
     Upload,
-    Divider,
     Space,
 } from 'antd';
 import { uploadURL } from '../services/api';
@@ -15,28 +14,7 @@ const { TextArea } = Input;
 
 
 const ProductForm = ({ beingCreated, setBeingCreated }) => {
-    //const [productInfo, setProductInfo] = useState([])
     const [imageURL, setImageURL] = useState('')
-    //const [selectedEntity, setSelectedEntity] = useState([])
-    // useEffect(() => {
-    //     createCatalogueWs()
-    //         .then(res => {
-    //             console.log(res.data)
-    //             setProductInfo(res.data.catalogue)
-    //         })
-    //         .catch(error => { console.log("el error", error) })
-    // }, [])
-    // console.log(productInfo)
-
-    // useEffect(() => {
-    //     getAllEntitiesWs()
-    //         .then(res => {
-    //             console.log(res.data)
-    //             setProductInfo(res.data.entities)
-    //         })
-    //         .catch(error => { console.log("el error", error) })
-    // }, [])
-    // console.log(productInfo)
 
     const configUpload = {
         name: 'image',
@@ -67,11 +45,6 @@ const ProductForm = ({ beingCreated, setBeingCreated }) => {
         console.log('Failed', values);
     };
 
-    // const onChange = (checkedValues) => {
-    //     console.log('checked = ', checkedValues);
-    //     setSelectedEntity(checkedValues)
-    // };
-
     return (
         <div >
             <div className='forms'>
@@ -84,12 +57,6 @@ const ProductForm = ({ beingCreated, setBeingCreated }) => {
                     >
             <br/> <br/>
             <Form
-                // labelCol={{
-                //     span: 8,
-                // }}
-                // wrapperCol={{
-                //     span: 16,
-                // }}
                 layout="horizontal"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -126,9 +93,7 @@ const ProductForm = ({ beingCreated, setBeingCreated }) => {
                         </Button>
                     </div>
             </Form>
-            <div>
-                
-            </div>
+
                 </Space>
             </div>
 

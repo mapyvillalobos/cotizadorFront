@@ -20,4 +20,6 @@ export const idProfileWs = () =>
     .catch(internalServerError);
 
 export const usersWs = (data) =>
-  api.get("/user/admin/users", data).then(successStatus).catch(internalServerError);
+  api.get("/user/admin/users", data)
+  .then(successStatus)
+  .catch(internalServerError);

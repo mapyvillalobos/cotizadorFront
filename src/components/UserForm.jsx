@@ -1,34 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { signupWs } from "../services/auth-ws";
-import { getAllEntitiesWs } from "../services/entity-ws";
 import { PlusOutlined } from '@ant-design/icons';
 import {
     Form,
     Input,
     Button,
     Upload,
-    Checkbox,
-    Col,
-    Row,
+    Space
 } from 'antd';
 import { uploadURL } from '../services/api';
 
 
 
-const UserForm = () => {
-    const [userInfo, setUserInfo] = useState([])
+const UserForm = ({beingCreated, setBeingCreated}) => {
     const [imageURL, setImageURL] = useState('')
-    const [selectedEntity, setSelectedEntity] = useState([])
-    useEffect(() => {
-        getAllEntitiesWs()
-            .then(res => {
-                console.log(res.data)
-                setUserInfo(res.data.entities)
-            })
-            .catch(error => { console.log("el error", error) })
-    }, [])
-    console.log(userInfo)
-
+    
     const configUpload = {
         name: 'image',
         action: uploadURL,
@@ -48,28 +34,32 @@ const UserForm = () => {
 
     const onFinish = (values) => {
         console.log(values)
-        signupWs({ ...values, ImageURL: imageURL, _entities: selectedEntity })
-            .then(response => (console.log(response)))
+        signupWs({ ...values, ImageURL: imageURL })
+            .then(response => {
+                if (response.data) {
+                    setBeingCreated(!beingCreated)
+                }
+            })
     }
+    
     const onFinishFailed = (values) => {
         console.log('Failed', values);
     };
 
-    const onChange = (checkedValues) => {
-        console.log('checked = ', checkedValues);
-        setSelectedEntity(checkedValues)
-    };
 
     return (
         <div>
+            <div className='forms'>
+                <Space
+                    direction="vertical"
+                    align="mock-block"
+                    style={{
+                        display: 'flex'
+                    }}
+                >
+                    <br /> <br />
 
             <Form
-                labelCol={{
-                    span: 4,
-                }}
-                wrapperCol={{
-                    span: 14,
-                }}
                 layout="horizontal"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -103,42 +93,18 @@ const UserForm = () => {
                             </div>
                         </div>
                     </Upload>
-
-                    <Form.Item>
-                        <Checkbox.Group
-                            style={{
-                                width: '100%',
-                            }}
-
-                        >
-                            <Row>
-                                <Col span={8}>
-                                    <Checkbox.Group
-                                        onChange={onChange}
-                                        options={
-                                            userInfo.map(item => ({ value: item._id, label: item.entityName }))
-                                        }
-                                    />
-                                </Col>
-                            </Row>
-                        </Checkbox.Group>
                     </Form.Item>
-
-                </Form.Item>
-                <div>
+                
                     <div>
                         <Button type="primary" htmlType="submit">
-                            Guardar
+                            Crear
                         </Button>
-                    </div>
                 </div>
             </Form>
-            <div>
-
+            </Space>
             </div>
 
-
-        </div>
+            </div>
     )
 };
 

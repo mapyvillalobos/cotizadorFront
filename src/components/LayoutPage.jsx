@@ -14,8 +14,6 @@ import { useNavigate } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 const style = {
-    height: 40,
-    width: 40,
     lineHeight: '40px',
     borderRadius: 4,
     backgroundColor: '#D70000',
@@ -81,8 +79,7 @@ const LayoutPage = (props) => {
                 <Content
                     style={{
                         margin: '0 16px',
-                            height: '600vh',
-                            padding: 8,
+                            padding: 5,
                     }}
                 >
                     <div
