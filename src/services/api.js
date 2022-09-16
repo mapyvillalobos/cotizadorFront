@@ -10,3 +10,5 @@ export const api = axios.create({
   withCredentials: true,
   timeout: 10000,
 });
+
+export const uploadURL = `${baseURL}/upload/single`

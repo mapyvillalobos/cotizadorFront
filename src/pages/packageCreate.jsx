@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { PackageForm } from '../components';
 import { createPackageWs } from "../services/package-ws"
+import { uploadURL } from '../services/api';
 
 
 
@@ -8,7 +9,7 @@ const packageCreate = () => {
     // const [imageURL, setImageURL] = useState('')
     // const configUpload = {
     //     name: 'image',
-    //     action: 'http://localhost:5005/api/upload/single',
+    //     action: uploadURL,
     //     onChange(info) {
     //         if (info.file.status !== 'uploading') {
     //             console.log(info.file, info.fileList);

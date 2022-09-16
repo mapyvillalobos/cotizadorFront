@@ -4,7 +4,8 @@ import { usersWs } from "../services/user-ws"
 import {
     Button,
     Row, 
-    Col
+    Col,
+    Divider
 } from 'antd';
 
 
@@ -23,7 +24,7 @@ const AllUsers = (props) => {
     console.log(userCards)
     return (
         <div className="site-card-wrapper">
-            <h1> Vendedores </h1>
+            <Divider orientation="center">Vendedores</Divider>
             {userCards.map(userCard => {
                 return (
                     <Row gutter={16}>

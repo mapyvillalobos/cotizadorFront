@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { getAllCataloguesWs } from "../services/catalogue-ws";
+import { Carousel } from 'antd';
 import { createQuoteWs } from "../services/quote-ws"
 import { PlusOutlined } from '@ant-design/icons';
 import {
@@ -12,29 +14,59 @@ import {
     DatePicker,
 } from 'antd';
 const { TextArea } = Input;
+const contentStyle = {
+    height: '160px',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+};
 
 
 
-const QuoteForm = () => {
+const QuoteForm = ({beingCreated, setBeingCreated}) => {
     const [quoteInfo, setQuoteInfo] = useState([])
+    const [productList, setProductList] = useState([])
+    const [selectedProduct, setSelectedProduct] = useState([])
     useEffect(() => {
-        createQuoteWs()
+        getAllCataloguesWs()
             .then(res => {
                 console.log(res.data)
-                setQuoteInfo(res.data.quote)
+                setProductList(res.data.catalogues)
             })
             .catch(error => { console.log("el error", error) })
     }, [])
-    console.log(quoteInfo)
+    
+
+    // useEffect(() => {
+    //     createQuoteWs()
+    //         .then(res => {
+    //             console.log(res.data)
+    //             setQuoteInfo(res.data.quote)
+    //         })
+    //         .catch(error => { console.log("el error", error) })
+    // }, [beingCreated])
+    // console.log(quoteInfo)
+
 
     const onFinish = (values) => {
         console.log(values)
-        createQuoteWs({ ...values })
-            .then(response => (console.log(response)))
+        createQuoteWs({ ...values, _products: selectedProduct })
+            .then(response => {
+                if (response.data) {
+                    setBeingCreated(!beingCreated)
+                }
+            })
     }
     const onFinishFailed = (values) => {
         console.log('Failed', values);
     };
+
+    const onChange = (checkedValues) => {
+        console.log('checked = ', checkedValues);
+        setSelectedProduct(checkedValues)
+    };
+
 
     return (
         <div>
@@ -80,18 +112,37 @@ const QuoteForm = () => {
                 <Form.Item name="clientPhone" >
                     <Input placeholder="Teléfono de contacto" />
                 </Form.Item>
+
+                <Form.Item>
+                    <Checkbox.Group
+                        style={{
+                            width: '100%',
+                        }}
+
+                    >
+                        <Row>
+                            <Col span={8}>
+                                <Checkbox.Group
+                                    onChange={onChange}
+                                    options={
+                                        productList.map(item => ({ value: item._id, label: item.productName }))
+                                    }
+                                />
+                            </Col>
+                        </Row>
+                    </Checkbox.Group>
+                </Form.Item>
+
                 <div>
                     <div>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit"
+                            beingCreated={beingCreated}
+                            setBeingCreated={setBeingCreated} >
                             Guardar
                         </Button>
                     </div>
                 </div>
             </Form>
-            <div>
-
-            </div>
-
 
         </div>
     )

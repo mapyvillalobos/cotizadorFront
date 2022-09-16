@@ -11,11 +11,12 @@ import {
     Col, 
     Row
 } from 'antd';
+import { uploadURL } from '../services/api';
 const { TextArea } = Input;
 
 
 
-const PackageForm = () => {
+const PackageForm = ({ beingCreated, setBeingCreated }) => {
     const [productList, setProductList] = useState([])
     const [imageURL, setImageURL] = useState('')
     const [selectedProduct, setSelectedProduct] = useState([])
@@ -31,7 +32,7 @@ const PackageForm = () => {
 
     const configUpload = {
         name: 'image',
-        action: 'http://localhost:5005/api/upload/single',
+        action: uploadURL,
         onChange(info) {
             if (info.file.status !== 'uploading') {
                 console.log(info.file, info.fileList);
@@ -48,7 +49,11 @@ const PackageForm = () => {
     const onFinish = (values) => {
         console.log(values)
         createPackageWs({ ...values, ImageURL: imageURL, _products:selectedProduct })
-            .then(response => (console.log(response)))
+            .then(response => {
+                if (response.data) {
+                    setBeingCreated(!beingCreated)
+                } 
+            })
     }
     const onFinishFailed = (values) => {
         console.log('Failed', values);

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { createEntityWs } from "../services/entity-ws"
+import { useState } from 'react';
+import { createCatalogueWs } from "../services/catalogue-ws"
 import { PlusOutlined } from '@ant-design/icons';
 import {
     Form,
@@ -7,23 +7,36 @@ import {
     Button,
     Upload,
     Divider,
+    Space,
 } from 'antd';
 import { uploadURL } from '../services/api';
+const { TextArea } = Input;
 
 
 
-const EntityForm = ({ beingCreated, setBeingCreated }) => {
-    //const [entityInfo, setEntityInfo] = useState([])
+const ProductForm = ({ beingCreated, setBeingCreated }) => {
+    //const [productInfo, setProductInfo] = useState([])
     const [imageURL, setImageURL] = useState('')
+    //const [selectedEntity, setSelectedEntity] = useState([])
     // useEffect(() => {
-    //     createEntityWs()
+    //     createCatalogueWs()
     //         .then(res => {
     //             console.log(res.data)
-    //             setEntityInfo(res.data.entity)
+    //             setProductInfo(res.data.catalogue)
     //         })
     //         .catch(error => { console.log("el error", error) })
     // }, [])
-    // console.log(entityInfo)
+    // console.log(productInfo)
+
+    // useEffect(() => {
+    //     getAllEntitiesWs()
+    //         .then(res => {
+    //             console.log(res.data)
+    //             setProductInfo(res.data.entities)
+    //         })
+    //         .catch(error => { console.log("el error", error) })
+    // }, [])
+    // console.log(productInfo)
 
     const configUpload = {
         name: 'image',
@@ -36,7 +49,6 @@ const EntityForm = ({ beingCreated, setBeingCreated }) => {
             if (info.file.status === 'done') {
                 console.log("que es info", info)
                 setImageURL(info.file.response.url.uri)
-  
             } else if (info.file.status === 'error') {
             }
         },
@@ -44,34 +56,54 @@ const EntityForm = ({ beingCreated, setBeingCreated }) => {
 
     const onFinish = (values) => {
         console.log(values)
-        createEntityWs({ ...values, ImageURL: imageURL })
+        createCatalogueWs({ ...values, ImageURL: imageURL })
             .then(response => {
                 if (response.data) {
                     setBeingCreated(!beingCreated)
-                } 
+                }
             })
     }
     const onFinishFailed = (values) => {
         console.log('Failed', values);
     };
 
+    // const onChange = (checkedValues) => {
+    //     console.log('checked = ', checkedValues);
+    //     setSelectedEntity(checkedValues)
+    // };
+
     return (
-        <div>
-            <Divider orientation="center">Crear nueva Entidad</Divider>
-            <div> 
+        <div >
+            <div className='forms'>
+                <Space
+                    direction="vertical"
+                    align="mock-block"
+                    style={{
+                        display: 'flex'
+                    }}
+                    >
+            <br/> <br/>
             <Form
-                labelCol={{
-                    span: 4,
-                }}
-                wrapperCol={{
-                    span: 14,
-                }}
+                // labelCol={{
+                //     span: 8,
+                // }}
+                // wrapperCol={{
+                //     span: 16,
+                // }}
                 layout="horizontal"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
             >
-                <Form.Item name="entityName" rules={[{ required: true }]}>
-                    <Input placeholder="Nombre de la entidad" />
+                <Form.Item name="productName" rules={[{ required: true }]}>
+                    <Input placeholder="Nombre del producto" />
+                </Form.Item>
+
+                <Form.Item name="productShortDescription">
+                    <TextArea rows={4} placeholder="Descripción corta" />
+                </Form.Item>
+
+                <Form.Item name="productCost" rules={[{ required: true }]}>
+                    <Input placeholder="Precio por persona" />
                 </Form.Item>
 
                 <Form.Item valuePropName="fileList">
@@ -88,22 +120,20 @@ const EntityForm = ({ beingCreated, setBeingCreated }) => {
                         </div>
                     </Upload>
                 </Form.Item>
-                <div>
                     <div>
                         <Button type="primary" htmlType="submit">
                             Crear
                         </Button>
                     </div>
-                </div>
             </Form>
-            </div>
             <div>
-
+                
             </div>
-
+                </Space>
+            </div>
 
         </div>
     )
 };
 
-export default EntityForm;
+export default ProductForm;

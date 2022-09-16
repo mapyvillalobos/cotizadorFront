@@ -10,6 +10,7 @@
 //     Col,
 //     Row,
 // } from 'antd';
+//import { uploadURL } from '../services/api';
 
 
 
@@ -28,7 +29,7 @@
 
 //     const configUpload = {
 //         name: 'image',
-//         action: 'http://localhost:5005/api/upload/single',
+//         action: uploadURL,
 //         onChange(info) {
 //             if (info.file.status !== 'uploading') {
 //                 console.log(info.file, info.fileList);

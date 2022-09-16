@@ -1,23 +1,24 @@
-import { Card, Button } from "antd";
+import { Card } from "antd";
 
 const { Meta } = Card;
 
 const CatalogueCard = (props) => {
     return (
-        <div>
+        <div className="cards">
             <Card
                 hoverable
                 style={{
                     width: 240,
                 }}
                 cover={<img src={props.img} />}
-            >
-                <Meta title={props.name} description={props.shortDescription} />
-            <h2>{props.cost}</h2>
+            > 
+                <Meta title={props.name} description={props.shortDescription}/>
+                <br/>
+            <span>${props.cost}</span>
             </Card>
-            <Button type="primary" htmlType="submit">
-                Agregar a cotización
-          </Button>
+            <div>
+                
+            </div>
         </div>
     )
 }

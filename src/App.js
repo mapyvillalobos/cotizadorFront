@@ -10,10 +10,11 @@ import UserForm from "./components/UserForm";
 function App() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-
+const [isLoading, setIsLoading] = useState(true)
     function authentication(user) {
       console.log("user", user);
       setUser(user);
+      localStorage.setItem("user", JSON.stringify(user))
     }
 
       function handleLogout() {
@@ -29,6 +30,7 @@ function App() {
                 });
                 navigate("/");
                 setUser(null);
+                localStorage.removeItem("user")
               } else {
                 alert(errorMessage);
               }
@@ -37,6 +39,19 @@ function App() {
         });
       }
     
+
+useEffect(() => {
+  const userLocal = localStorage.getItem("user")
+  if (userLocal){
+    setUser(JSON.parse(userLocal))
+    setIsLoading(false)
+  } else {setIsLoading(false)}
+}, []);
+
+if (isLoading){
+  return (<div>Estoy cargando</div>)
+}
+
 return (
   <div className="App">
     <Routes>

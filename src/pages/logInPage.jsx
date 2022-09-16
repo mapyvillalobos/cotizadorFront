@@ -1,11 +1,11 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Layout, Image, Space, Modal, Row } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Button, Form, Input, Layout, Image,  Modal } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 
 import { loginWs } from '../services/auth-ws'
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 
 
 
@@ -19,7 +19,7 @@ const LogInPage = (props) => {
                 console.log(response)
                 if (response.status) {
                     props.authentication(response.data.user)
-                    navigate("/main/dashboard")
+                    navigate("/main/paquetes")
                     Modal.success({
                         content: "¡Bienvenido!",
                     })
@@ -42,15 +42,15 @@ const LogInPage = (props) => {
                         </Header>
                             <Content
                     justify="center" align="middle">
-                    <div>
+                    <div className='containerPrincipal'>
                         
                     <Form
                             name="basic"
                             labelCol={{
-                                span: 8,
+                                span: 24,
                             }}
                             wrapperCol={{
-                                span: 8,
+                                span: 24,
                             }}
                                     initialValues={{
                                         remember: true,

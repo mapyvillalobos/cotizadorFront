@@ -24,14 +24,18 @@ const columns = [
         key: '_Owner',
         render: (_, record) => (
             <Space size="middle">
-                <a>{record._Owner?.email}</a>
+                <a>{record._Owner?.firstName}</a>
             </Space>
         ),
     },
     {
         title: 'Entidad',
-        dataIndex: '_Entity',
-        key: '_Entity',
+        dataIndex: '_products',
+        key: '_products',
+        render: (_, record) => (
+            <Space size="middle">
+                <a>{record._products?.map(product => <span>{product.productName}</span>)}</a>
+            </Space>)
     },
     {
         title: 'Status',
