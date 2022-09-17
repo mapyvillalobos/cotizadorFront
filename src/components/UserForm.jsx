@@ -6,15 +6,16 @@ import {
     Input,
     Button,
     Upload,
-    Space
+    Space,
+    Modal
 } from 'antd';
 import { uploadURL } from '../services/api';
 
 
 
-const UserForm = ({beingCreated, setBeingCreated}) => {
+const UserForm = ({ beingCreated, setBeingCreated }) => {
     const [imageURL, setImageURL] = useState('')
-    
+
     const configUpload = {
         name: 'image',
         action: uploadURL,
@@ -24,7 +25,6 @@ const UserForm = ({beingCreated, setBeingCreated}) => {
             }
 
             if (info.file.status === 'done') {
-                console.log("que es info", info)
                 setImageURL(info.file.response.url.uri)
 
             } else if (info.file.status === 'error') {
@@ -33,14 +33,19 @@ const UserForm = ({beingCreated, setBeingCreated}) => {
     }
 
     const onFinish = (values) => {
-        signupWs({ ...values, ImageURL: imageURL })
+        signupWs({ ...values, imageURL: imageURL })
             .then(response => {
                 if (response.data) {
                     setBeingCreated(!beingCreated)
                 }
+                if (response.status) {
+                    Modal.success({
+                        content: "Vendedor creado correctamente",
+                    })
+                }
             })
     }
-    
+
     const onFinishFailed = (values) => {
         console.log('Failed', values);
     };
@@ -58,52 +63,52 @@ const UserForm = ({beingCreated, setBeingCreated}) => {
                 >
                     <br /> <br />
 
-            <Form
-                layout="horizontal"
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-            >
-                <Form.Item name="firstName" rules={[{ required: true }]}>
-                    <Input placeholder="*Nombre" />
-                </Form.Item>
+                    <Form
+                        layout="horizontal"
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                    >
+                        <Form.Item name="firstName" rules={[{ required: true }]}>
+                            <Input placeholder="*Nombre" />
+                        </Form.Item>
 
-                <Form.Item name="lastName" rules={[{ required: true }]}>
-                    <Input placeholder="*Apellido" />
-                </Form.Item>
+                        <Form.Item name="lastName" rules={[{ required: true }]}>
+                            <Input placeholder="*Apellido" />
+                        </Form.Item>
 
-                <Form.Item name="email" rules={[{ required: true }]}>
-                    <Input placeholder="*Correo electrónico" />
-                </Form.Item>
+                        <Form.Item name="email" rules={[{ required: true }]}>
+                            <Input placeholder="*Correo electrónico" />
+                        </Form.Item>
 
-                <Form.Item name="password" rules={[{ required: true }]}>
-                    <Input placeholder="*Contraseña" />
-                </Form.Item>
+                        <Form.Item name="password" rules={[{ required: true }]}>
+                            <Input.Password placeholder="*Contraseña" />
+                        </Form.Item>
 
-                <Form.Item valuePropName="fileList">
-                    <Upload {...configUpload} listType="picture-card">
+                        <Form.Item valuePropName="fileList">
+                            <Upload {...configUpload} listType="picture-card">
+                                <div>
+                                    <PlusOutlined />
+                                    <div
+                                        style={{
+                                            marginTop: 8,
+                                        }}
+                                    >
+                                        Imagen
+                                    </div>
+                                </div>
+                            </Upload>
+                        </Form.Item>
+
                         <div>
-                            <PlusOutlined />
-                            <div
-                                style={{
-                                    marginTop: 8,
-                                }}
-                            >
-                                Imagen
-                            </div>
+                            <Button type="primary" htmlType="submit">
+                                Crear
+                            </Button>
                         </div>
-                    </Upload>
-                    </Form.Item>
-                
-                    <div>
-                        <Button type="primary" htmlType="submit">
-                            Crear
-                        </Button>
-                </div>
-            </Form>
-            </Space>
+                    </Form>
+                </Space>
             </div>
 
-            </div>
+        </div>
     )
 };
 

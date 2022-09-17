@@ -12,7 +12,8 @@ const UserCard = (props) => {
                 }}
                 cover={<img src={props.img} />}
             >
-                <Meta title={props.firstName} />
+                <Meta title={props.firstName} /> <br/>
+                <span>{props.email}</span>
         
             </Card>
         </div>

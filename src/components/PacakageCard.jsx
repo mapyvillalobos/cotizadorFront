@@ -3,7 +3,6 @@ import { Card } from 'antd';
 const { Meta } = Card;
 
 const PackageCard = (props) => {
-    console.log(props)
     return (
            <div> 
 
@@ -21,7 +20,7 @@ const PackageCard = (props) => {
                 <span>{props.amountPeolple} personas</span><br /><br />
             <div>
             {props.products.map(product => (
-                <span>{product.productName}  <br/></span>
+                <span>- {product.productName}  <br/></span>
             )) }
                 </div>
             </Card>

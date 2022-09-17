@@ -7,6 +7,7 @@ import {
     Button,
     Upload,
     Space,
+    Modal,
 } from 'antd';
 import { uploadURL } from '../services/api';
 const { TextArea } = Input;
@@ -25,7 +26,6 @@ const ProductForm = ({ beingCreated, setBeingCreated }) => {
             }
 
             if (info.file.status === 'done') {
-                console.log("que es info", info)
                 setImageURL(info.file.response.url.uri)
             } else if (info.file.status === 'error') {
             }
@@ -33,10 +33,15 @@ const ProductForm = ({ beingCreated, setBeingCreated }) => {
     }
 
     const onFinish = (values) => {
-        createCatalogueWs({ ...values, ImageURL: imageURL })
+        createCatalogueWs({ ...values, catalogueImageURL: imageURL })
             .then(response => {
                 if (response.data) {
                     setBeingCreated(!beingCreated)
+                }
+                if (response.status) {
+                    Modal.success({
+                        content: "Producto o servicio creado exitosamente",
+                    })
                 }
             })
     }
@@ -53,45 +58,45 @@ const ProductForm = ({ beingCreated, setBeingCreated }) => {
                     style={{
                         display: 'flex'
                     }}
+                >
+                    <br /> <br />
+                    <Form
+                        layout="horizontal"
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
                     >
-            <br/> <br/>
-            <Form
-                layout="horizontal"
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-            >
-                <Form.Item name="productName" rules={[{ required: true }]}>
-                    <Input placeholder="Nombre del producto" />
-                </Form.Item>
+                        <Form.Item name="productName" rules={[{ required: true }]}>
+                            <Input placeholder="*Nombre del producto" />
+                        </Form.Item>
 
-                <Form.Item name="productShortDescription">
-                    <TextArea rows={4} placeholder="Descripción corta" />
-                </Form.Item>
+                        <Form.Item name="productShortDescription">
+                            <TextArea rows={4} placeholder="Descripción corta" />
+                        </Form.Item>
 
-                <Form.Item name="productCost" rules={[{ required: true }]}>
-                    <Input placeholder="Precio por persona" />
-                </Form.Item>
+                        <Form.Item name="productCost" rules={[{ required: true }]}>
+                            <Input placeholder="*Precio" />
+                        </Form.Item>
 
-                <Form.Item valuePropName="fileList">
-                    <Upload {...configUpload} listType="picture-card">
+                        <Form.Item valuePropName="fileList">
+                            <Upload {...configUpload} listType="picture-card">
+                                <div>
+                                    <PlusOutlined />
+                                    <div
+                                        style={{
+                                            marginTop: 8,
+                                        }}
+                                    >
+                                        Imagen
+                                    </div>
+                                </div>
+                            </Upload>
+                        </Form.Item>
                         <div>
-                            <PlusOutlined />
-                            <div
-                                style={{
-                                    marginTop: 8,
-                                }}
-                            >
-                                Imagen
-                            </div>
+                            <Button type="primary" htmlType="submit">
+                                Crear
+                            </Button>
                         </div>
-                    </Upload>
-                </Form.Item>
-                    <div>
-                        <Button type="primary" htmlType="submit">
-                            Crear
-                        </Button>
-                    </div>
-            </Form>
+                    </Form>
 
                 </Space>
             </div>

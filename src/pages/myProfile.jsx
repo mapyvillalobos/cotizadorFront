@@ -15,7 +15,7 @@ const ProfilePage = () => {
             })
             .catch(error => { console.log("el error", error) })
     }, [])
-    console.log(profileUser)
+  
     const {imageURL, firstName, lastName, email,role} = profileUser
     return (
         <div>
@@ -26,9 +26,9 @@ const ProfilePage = () => {
                         email={email} 
                         role={role}
                     />
-            <Button type="primary" onClick={() => setIsEdited(!isEdited)}>
+            {/* <Button type="primary" onClick={() => setIsEdited(!isEdited)}>
                 Editar
-            </Button>
+            </Button> */}
 
             {isEdited && <MyProfileEditForm />}
                     

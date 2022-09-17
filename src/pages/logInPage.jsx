@@ -16,12 +16,11 @@ const LogInPage = (props) => {
     const onFinish = (values) => {
         loginWs(values)
             .then(response => {
-                console.log(response)
                 if (response.status) {
                     props.authentication(response.data.user)
                     navigate("/main/paquetes")
                     Modal.success({
-                        content: "¡Bienvenido!",
+                        content: "¡Que alegría volverte a ver!",
                     })
                 }
             })
@@ -63,7 +62,7 @@ const LogInPage = (props) => {
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Please input your Username!',
+                                                message: 'Ingresa tu email',
                                             },
                                         ]}
                                     >
@@ -74,11 +73,11 @@ const LogInPage = (props) => {
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Please input your Password!',
+                                                message: 'Ingresa tu contraseña',
                                             },
                                         ]}
                                     >
-                                        <Input
+                                <Input.Password
                                             prefix={<LockOutlined className="site-form-item-icon" />}
                                             type="password"
                                             placeholder="*Contraseña"

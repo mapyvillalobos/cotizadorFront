@@ -12,7 +12,6 @@ function App() {
   const navigate = useNavigate();
 const [isLoading, setIsLoading] = useState(true)
     function authentication(user) {
-      console.log("user", user);
       setUser(user);
       localStorage.setItem("user", JSON.stringify(user))
     }
@@ -20,7 +19,7 @@ const [isLoading, setIsLoading] = useState(true)
       function handleLogout() {
         Modal.confirm({
           title: "Cerrar sesión",
-          content: "Estás seguro que deseas cerar sesión?",
+          content: "Estás a punto de cerrar sesión. ¿Es lo que quieres?",
           onOk() {
             logoutWs().then((res) => {
               const { data, status, errorMessage } = res;

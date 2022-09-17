@@ -17,7 +17,6 @@ const EntityCards = (props) => {
         })
         .catch(error => {console.log ("el error", error)})
     }, [beingCreated])
-    console.log(entityCards)
 
     return (
         <div className="site-card-wrapper">

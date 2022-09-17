@@ -54,16 +54,12 @@ const TableQuotes = () => {
     useEffect(() => {
         getAllQuotesWs()
             .then(res => {
-                console.log(res)
-
                 setInfoQuotes(res.data.quotes)
             })
             .catch(error => { console.log("el error", error) })
     }, [])
     const data = () => {
 
-        for (let i = 0; i < 3; ++i) {
-        }
     };
     return (<Table columns={columns} dataSource={infoQuotes} />)
 };

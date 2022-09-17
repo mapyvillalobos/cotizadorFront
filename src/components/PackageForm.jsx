@@ -9,7 +9,8 @@ import {
     Upload,
     Checkbox,  
     Row, 
-    Space
+    Space,
+    Modal
 } from 'antd';
 import { uploadURL } from '../services/api';
 const { TextArea } = Input;
@@ -24,7 +25,6 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
     useEffect(() => {
         getAllCataloguesWs()
         .then(res => {
-            console.log(res.data)
             setProductList(res.data.catalogues)
         })
         .catch(error => {console.log("el error", error)})
@@ -40,7 +40,6 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
             }
 
             if (info.file.status === 'done') {
-                console.log("que es info", info)
                 setImageURL(info.file.response.url.uri)
             } else if (info.file.status === 'error') {
             }
@@ -53,6 +52,11 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
                 if (response.data) {
                     setBeingCreated(!beingCreated)
                 } 
+                if (response.status) {
+                    Modal.success({
+                        content: "Paquete creado exitosamente",
+                    })
+                }
             })
     }
     const onFinishFailed = (values) => {
@@ -60,7 +64,6 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
     };
 
     const onChange = (checkedValues) => {
-        console.log('checked = ', checkedValues);
         setSelectedProduct(checkedValues)
     };
 
@@ -83,7 +86,7 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
                 onFinishFailed={onFinishFailed}
             >
                 <Form.Item name="packageName" rules={[{ required: true }]}>
-                    <Input placeholder="Nombre del paquete" />
+                    <Input placeholder="* Nombre del paquete" />
                 </Form.Item>
 
                 <Form.Item name="packageShortDescription">
@@ -91,7 +94,7 @@ const PackageForm = ({ beingCreated, setBeingCreated }) => {
                 </Form.Item>
 
                 <Form.Item name="packageCost" rules={[{ required: true }]}>
-                    <Input placeholder="Precio por persona" />
+                    <Input placeholder="* Precio por persona" />
                 </Form.Item>
 
                 <Form.Item name="packageAmountPeople" >

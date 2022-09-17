@@ -51,6 +51,7 @@ const AllUsers = (props) => {
                         <UserCard
                         img={userCard.imageURL}
                         firstName={userCard.firstName}
+                        email={userCard.email}
                     />
                         </Col>
                 );
